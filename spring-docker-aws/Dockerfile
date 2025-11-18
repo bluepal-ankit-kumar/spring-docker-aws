@@ -1,7 +1,10 @@
-FROM openjdk:17
-COPY target/spring-docker-aws  /usr/aap/
+FROM openjdk:17-jdk-slim
 
-WORKDIR /usr/app/
+WORKDIR /app
+
+# Copy JAR file from target folder to the container
+COPY target/spring-docker-aws-0.0.1-SNAPSHOT.jar app.jar
+
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "spring-docker-aws.jar"]
 
+ENTRYPOINT ["java", "-jar", "app.jar"]
